@@ -1,0 +1,30 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@mdi/font": "^7.4.47",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/pbkdf2": "^3.1.2",
+    "@types/uuid": "^9.0.8",
+    "nuxt": "^3.9.3",
+    "vue": "^3.4.14",
+    "vue-router": "^4.2.5",
+    "vuetify": "^3.4.0-beta.1"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "mybatis-mapper": "^0.7.1",
+    "mysql2": "^3.7.1",
+    "pbkdf2": "^3.1.2",
+    "sass": "^1.70.0",
+    "uuid": "^9.0.1"
+  }
+}

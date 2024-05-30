@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">  
+
+  <insert id="new">
+    INSERT INTO user
+    (
+      username, password, email
+    )
+    VALUES
+    (
+      #{username}, #{password}, #{email}
+    )
+  </insert>
+
+  <select id="findByEmail">
+    SELECT
+      id, username, password, email
+    FROM
+      user
+    WHERE
+      del_flag = 0
+      AND email = #{email}
+  </select>
+
+  <select id="get">
+    SELECT
+      id, username, password, email
+    FROM
+      user
+    WHERE
+      del_flag = 0
+      AND id = ${id}
+  </select>
+
+  <select id="getList">
+    SELECT
+      id, username, password, email
+    FROM
+      user
+    WHERE
+      del_flag = 0
+      <if test="keyword != undefined and keyword != null and keyword !=''">
+        AND CONCAT(IFNULL(username, ""), IFNULL(email, "")) like '%${keyword}%'
+      </if>
+    <if test="sortKey != undefined and sortKey != null and sortKey !=''">
+    ORDER BY
+      ${sortKey}
+    ${sortOrder}
+    </if>
+    <if test="start != undefined and start != null and start !=''">
+    LIMIT
+      ${start}, ${itemsPerPage}
+    </if>
+  </select>
+
+  <select id="getTotal">
+    SELECT
+      count(1) total
+    FROM
+      user
+    WHERE
+      del_flag = 0
+      <if test="keyword != undefined and keyword != null and keyword !=''">
+        AND CONCAT(IFNULL(username, ""), IFNULL(email, "")) like '%${keyword}%'
+      </if>
+  </select>
+
+  <update id="update">
+    UPDATE user SET
+      username = #{username}
+      ,password = #{password}
+      ,email = #{email}
+    WHERE id = ${id}
+  </update>
+
+  <delete id="delete">
+    UPDATE user SET
+      del_flag = 1
+    WHERE id = ${id}
+  </delete>
+</mapper>
